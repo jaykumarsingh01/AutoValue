@@ -1,0 +1,437 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | AutoValue</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        .profile-photo-section {
+            display: flex;
+            justify-content: center;
+            margin: 28px 0 32px;
+        }
+
+        .profile-photo-wrapper {
+            position: relative;
+            width: 130px;
+            height: 130px;
+        }
+
+        .profile-photo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #60a5fa;
+            background: #0b1220;
+            display: block;
+        }
+
+        .profile-photo-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #60a5fa;
+            font-size: 48px;
+            font-weight: 700;
+        }
+
+        .photo-edit-button {
+            position: absolute;
+            right: 2px;
+            bottom: 5px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid #111c2d;
+            background: #3867f5;
+            color: white;
+            font-size: 19px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-edit-button:hover {
+            background: #5b5cf0;
+            transform: scale(1.05);
+        }
+
+        .photo-help {
+            text-align: center;
+            font-size: 13px;
+            color: #94a3b8;
+            margin-top: -18px;
+            margin-bottom: 25px;
+        }
+
+        #profile_image {
+            display: none;
+        }
+
+        .profile-card {
+            width: min(100% - 32px, 700px);
+            box-sizing: border-box;
+        }
+
+
+        
+/* Full-screen profile photo viewer */
+.photo-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.photo-modal.active {
+    display: flex;
+}
+
+.photo-modal-image {
+    display: block;
+    max-width: 90vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
+}
+
+.photo-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 38px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.photo-modal-close:hover {
+    color: #60a5fa;
+}
+
+#profilePhotoPreview {
+    cursor: zoom-in;
+}
+
+
+
+
+
+
+
+.photo-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.photo-modal.active {
+    display: flex;
+}
+
+.photo-modal-image {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.photo-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+#profilePhotoPreview {
+    cursor: zoom-in;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+
+<body class="app-page">
+
+    <main class="auth-card profile-card">
+
+        <a class="brand" href="{{ url_for('dashboard') }}">
+            AutoValue<span>.</span>
+        </a>
+
+        <p class="eyebrow">ACCOUNT MANAGEMENT</p>
+        <h1>My Profile</h1>
+        <p class="muted">Manage your personal information.</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="notice">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <form method="POST"
+              action="{{ url_for('profile') }}"
+              enctype="multipart/form-data">
+
+            <div class="profile-photo-section">
+                <div class="profile-photo-wrapper">
+
+                    {% if user['profile_image'] %}
+                        <img
+                            id="profilePhotoPreview"
+                            class="profile-photo"
+                            src="{{ url_for('static', filename='uploads/profiles/' ~ user['profile_image']) }}"
+                            alt="Profile photo"
+                        >
+                    {% else %}
+                        <div
+                            id="profilePhotoPlaceholder"
+                            class="profile-photo profile-photo-placeholder"
+                        >
+                            {{ user['username'][0] | upper }}
+                        </div>
+
+                        <img
+                            id="profilePhotoPreview"
+                            class="profile-photo"
+                            src=""
+                            alt="Profile photo preview"
+                            style="display: none;"
+                        >
+                    {% endif %}
+
+                    <label for="profile_image"
+                           class="photo-edit-button"
+                           title="Change profile photo">
+                        &#9998;
+                    </label>
+
+                    <input
+                        type="file"
+                        id="profile_image"
+                        name="profile_image"
+                        accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                    >
+
+                </div>
+            </div>
+
+            <p class="photo-help">
+                Click the pencil icon to upload a profile photo
+            </p>
+
+            <label for="username">Full Name</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                value="{{ user['username'] }}"
+                autocomplete="name"
+                required
+            >
+
+            <label for="email">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                value="{{ user['email'] }}"
+                autocomplete="email"
+                required
+            >
+
+            <label for="role">Account Role</label>
+            <input
+                type="text"
+                id="role"
+                value="{{ user['role'] | title }}"
+                disabled
+            >
+
+            <label for="created_at">Member Since</label>
+            <input
+                type="text"
+                id="created_at"
+                value="{{ user['created_at'] }}"
+                disabled
+            >
+
+            <button class="auth-button" type="submit">
+                Save Changes →
+            </button>
+
+        </form>
+
+        <p class="auth-footer">
+            <a href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+        </p>
+
+        <p class="auth-footer">
+            <a href="{{ url_for('logout') }}">Sign Out</a>
+        </p>
+
+    </main>
+
+
+
+    <!-- Full Screen Profile Photo Viewer -->
+<div class="photo-modal" id="photoModal" aria-hidden="true">
+
+    <button
+        type="button"
+        class="photo-modal-close"
+        id="closePhotoModal"
+        aria-label="Close photo">
+        &times;
+    </button>
+
+    <img
+        src=""
+        alt="Full size profile photo"
+        class="photo-modal-image"
+        id="modalPhoto">
+
+</div>
+
+
+
+
+
+
+
+
+
+    <script>
+        const photoInput = document.getElementById("profile_image");
+        const photoPreview = document.getElementById("profilePhotoPreview");
+        const photoPlaceholder = document.getElementById("profilePhotoPlaceholder");
+
+        photoInput.addEventListener("change", function () {
+            const file = this.files[0];
+
+            if (!file) return;
+
+            const allowedTypes = [
+                "image/jpeg",
+                "image/png",
+                "image/webp"
+            ];
+
+            if (!allowedTypes.includes(file.type)) {
+                alert("Please select a JPG, PNG or WEBP image.");
+                this.value = "";
+                return;
+            }
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert("Please select an image smaller than 5 MB.");
+                this.value = "";
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                photoPreview.src = event.target.result;
+                photoPreview.style.display = "block";
+
+                if (photoPlaceholder) {
+                    photoPlaceholder.style.display = "none";
+                }
+            };
+
+            reader.readAsDataURL(file);
+        });
+
+
+
+
+const photoModal = document.getElementById("photoModal");
+const modalPhoto = document.getElementById("modalPhoto");
+const closePhotoModal = document.getElementById("closePhotoModal");
+
+if (photoPreview && photoModal && modalPhoto && closePhotoModal) {
+    photoPreview.addEventListener("click", function () {
+        if (this.style.display === "none" || !this.getAttribute("src")) {
+            return;
+        }
+
+        modalPhoto.src = this.src;
+        photoModal.classList.add("active");
+        photoModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+    });
+
+    function closePhotoViewer() {
+        photoModal.classList.remove("active");
+        photoModal.setAttribute("aria-hidden", "true");
+        modalPhoto.removeAttribute("src");
+        document.body.style.overflow = "";
+    }
+
+    closePhotoModal.addEventListener("click", closePhotoViewer);
+
+    photoModal.addEventListener("click", function (event) {
+        if (event.target === photoModal) {
+            closePhotoViewer();
+        }
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closePhotoViewer();
+        }
+    });
+}
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>

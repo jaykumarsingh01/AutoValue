@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | AutoValue</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="app-page">
+    <header class="topbar">
+        <a class="brand" href="{{ url_for('admin_dashboard') }}">AutoValue<span>.</span></a>
+        <nav>
+            <span class="admin-label">ADMIN</span>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <main class="app-container">
+        <p class="eyebrow">SYSTEM OVERVIEW</p>
+        <h1>Admin Dashboard</h1>
+        <p class="muted">Welcome, {{ username }}. Manage users and monitor activity.</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% for category, message in messages %}
+            <div class="notice">{{ message }}</div>
+          {% endfor %}
+        {% endwith %}
+
+        <section class="stats-grid">
+            <article class="stat-card">
+                <p>Registered users</p>
+                <h2>{{ total_users }}</h2>
+            </article>
+            <article class="stat-card">
+                <p>Total predictions</p>
+                <h2>{{ total_predictions }}</h2>
+            </article>
+        </section>
+
+        <section class="panel">
+            <h2>Registered accounts</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Joined</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for u in users %}
+                        <tr>
+                            <td>{{ u["id"] }}</td>
+                            <td>{{ u["username"] }}</td>
+                            <td>{{ u["email"] }}</td>
+                            <td>{{ u["role"] }}</td>
+                            <td>{{ u["created_at"] }}</td>
+                            <td>
+                                {% if u["role"] == "user" %}
+                                <form method="POST"
+                                      action="{{ url_for('delete_user', user_id=u['id']) }}"
+                                      onsubmit="return confirm('Delete this user and their prediction history?')">
+                                    <button class="danger-button" type="submit">
+                                        Delete
+                                    </button>
+                                </form>
+                                {% else %}
+                                    —
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr><td colspan="6">No accounts found.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Recent prediction activity</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Car</th>
+                            <th>Year</th>
+                            <th>Price</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in recent_predictions %}
+                        <tr>
+                            <td>{{ p["username"] }}<br>{{ p["email"] }}</td>
+                            <td>{{ p["company"] }} {{ p["car_model"] }}</td>
+                            <td>{{ p["year"] }}</td>
+                            <td>₹{{ "{:,.2f}".format(p["predicted_price"]) }}</td>
+                            <td>{{ p["created_at"] }}</td>
+                        </tr>
+                        {% else %}
+                        <tr><td colspan="5">No predictions recorded yet.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

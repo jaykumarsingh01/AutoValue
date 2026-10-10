@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings | AutoValue</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="app-page">
+
+    <main class="auth-card profile-card">
+
+        <a class="brand" href="{{ url_for('dashboard') }}">
+            AutoValue<span>.</span>
+        </a>
+
+        <p class="eyebrow">SECURITY & PREFERENCES</p>
+        <h1>Account Settings</h1>
+        <p class="muted">Keep your AutoValue account secure.</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="notice">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('settings') }}">
+
+            <label for="current_password">Current Password</label>
+            <input
+                type="password"
+                id="current_password"
+                name="current_password"
+                autocomplete="current-password"
+                required
+            >
+
+            <label for="new_password">New Password</label>
+            <input
+                type="password"
+                id="new_password"
+                name="new_password"
+                minlength="8"
+                autocomplete="new-password"
+                required
+            >
+
+            <label for="confirm_password">Confirm New Password</label>
+            <input
+                type="password"
+                id="confirm_password"
+                name="confirm_password"
+                minlength="8"
+                autocomplete="new-password"
+                required
+            >
+
+            <button class="auth-button" type="submit">
+                Update Password →
+            </button>
+
+        </form>
+
+        <p class="auth-footer">
+            <a href="{{ url_for('profile') }}">← Back to Profile</a>
+        </p>
+
+        <p class="auth-footer">
+            <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+        </p>
+
+    </main>
+
+</body>
+</html>

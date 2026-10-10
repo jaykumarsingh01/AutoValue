@@ -1,0 +1,888 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AutoValue | Car Price Intelligence</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- ========== SIDEBAR ========== -->
+
+    <aside class="sidebar">
+
+        <a href="/" class="brand">
+            <div class="brand-icon">A</div>
+            <div class="brand-copy">
+                <strong>AutoValue<span>.</span></strong>
+                <small>PRICE INTELLIGENCE</small>
+            </div>
+        </a>
+
+        <div class="nav-label">WORKSPACE</div>
+
+        <nav class="sidebar-nav">
+            <a href="#home" class="nav-item active">
+                <span class="nav-icon">⌂</span>
+                <span>Overview</span>
+                <span class="nav-arrow">›</span>
+            </a>
+
+            <a href="#estimator" class="nav-item">
+                <span class="nav-icon">◈</span>
+                <span>Price Estimator</span>
+            </a>
+
+            <a href="#how-it-works" class="nav-item">
+                <span class="nav-icon">▤</span>
+                <span>How It Works</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-label">PREFERENCES</div>
+
+        <nav class="sidebar-nav">
+            <a href="#estimator" class="nav-item">
+                <span class="nav-icon">⚙</span>
+                <span>Prediction Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-spacer"></div>
+
+        <div class="sidebar-promo">
+            <div class="promo-top">
+                <span class="promo-icon">✦</span>
+                <span class="promo-tag">ML POWERED</span>
+            </div>
+
+            <h3>Smarter car valuation.</h3>
+
+            <p>
+                Get a data-driven estimated resale value
+                based on your vehicle details.
+            </p>
+
+            <a href="#estimator">
+                Explore estimator <span>↗</span>
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            <span class="status-dot"></span>
+            Prediction service
+            <span class="service-status">Ready</span>
+        </div>
+
+        <div class="sidebar-version">
+            <span>AUTOVALUE</span>
+            <span>WEB APP · V1.0</span>
+        </div>
+
+    </aside>
+
+
+    <!-- ========== MAIN CONTENT ========== -->
+
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="breadcrumb">
+                Workspace <span>/</span>
+                <strong>Car Valuation</strong>
+            </div>
+
+            <div class="topbar-actions">
+                <div class="top-status">
+                    <span class="status-dot"></span>
+                    ML engine interface
+                </div>
+
+                <div class="top-divider"></div>
+
+                <div class="avatar">AV</div>
+
+                <div class="profile-copy">
+                    <strong>Valuation Studio</strong>
+                    <span>Personal workspace</span>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- ========== HERO ========== -->
+
+        <section class="hero" id="home">
+
+            <div class="hero-copy">
+
+                <div class="eyebrow">
+                    <span class="eyebrow-line"></span>
+                    INTELLIGENT CAR VALUATION
+                </div>
+
+                <h1>
+                    Your car.
+                    <br>
+                    <span>Its true value.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Discover your car's estimated resale price using
+                    machine learning and key vehicle characteristics.
+                    Make your next selling decision with more confidence.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#estimator" class="primary-button">
+                        Estimate my car
+                        <span>↗</span>
+                    </a>
+
+                    <a href="#how-it-works" class="secondary-button">
+                        How it works <span>→</span>
+                    </a>
+                </div>
+
+                <div class="hero-footnote">
+                    <span class="check-circle">✓</span>
+                    <span>Quick estimation</span>
+                    <span class="footnote-divider"></span>
+                    <span>Data-driven results</span>
+                </div>
+
+            </div>
+
+
+            <!-- Decorative car illustration -->
+
+            <div class="hero-visual">
+
+                <div class="visual-grid"></div>
+                <div class="visual-glow"></div>
+
+                <div class="visual-top-label">
+                    <span class="pulse-dot"></span>
+                    VEHICLE INTELLIGENCE
+                </div>
+
+                <div class="orbit orbit-outer"></div>
+                <div class="orbit orbit-inner"></div>
+
+                <div class="car-illustration">
+
+                    <svg viewBox="0 0 620 300"
+                         xmlns="http://www.w3.org/2000/svg"
+                         role="img"
+                         aria-label="Stylized premium blue sports car">
+
+                        <defs>
+                            <linearGradient id="carPaint"
+                                            x1="0" y1="0"
+                                            x2="0.8" y2="1">
+                                <stop offset="0%" stop-color="#d9ecff"/>
+                                <stop offset="22%" stop-color="#83bfff"/>
+                                <stop offset="55%" stop-color="#377ac1"/>
+                                <stop offset="100%" stop-color="#142e53"/>
+                            </linearGradient>
+
+                            <linearGradient id="glass"
+                                            x1="0" y1="0"
+                                            x2="0" y2="1">
+                                <stop offset="0%" stop-color="#8dc8ff"/>
+                                <stop offset="100%" stop-color="#101f35"/>
+                            </linearGradient>
+
+                            <linearGradient id="wheelMetal"
+                                            x1="0" y1="0"
+                                            x2="1" y2="1">
+                                <stop offset="0%" stop-color="#e0edfc"/>
+                                <stop offset="40%" stop-color="#627f9f"/>
+                                <stop offset="100%" stop-color="#26384d"/>
+                            </linearGradient>
+
+                            <filter id="carShadow"
+                                    x="-30%" y="-50%"
+                                    width="160%" height="200%">
+                                <feGaussianBlur stdDeviation="13"/>
+                            </filter>
+                        </defs>
+
+                        <!-- Ground shadow -->
+                        <ellipse cx="313" cy="247" rx="225" ry="24"
+                                 fill="#000814" opacity=".8"
+                                 filter="url(#carShadow)"/>
+
+                        <!-- Rear silhouette -->
+                        <path d="M75 204
+                                 L90 174
+                                 Q99 156 127 147
+                                 L196 131
+                                 L249 81
+                                 Q264 65 291 64
+                                 L402 70
+                                 Q426 72 444 94
+                                 L488 143
+                                 L534 160
+                                 Q557 169 565 192
+                                 L559 220
+                                 L84 222 Z"
+                              fill="#193b63"
+                              stroke="#80b8ef"
+                              stroke-width="2"/>
+
+                        <!-- Windows -->
+                        <path d="M218 127
+                                 L267 82
+                                 Q276 74 294 75
+                                 L327 77
+                                 L327 128 Z"
+                              fill="url(#glass)"
+                              stroke="#b6ddff"
+                              stroke-width="1.5"/>
+
+                        <path d="M338 78
+                                 L398 82
+                                 Q414 83 427 99
+                                 L451 128
+                                 L338 128 Z"
+                              fill="url(#glass)"
+                              stroke="#b6ddff"
+                              stroke-width="1.5"/>
+
+                        <!-- Window divider -->
+                        <path d="M333 78 L335 132"
+                              stroke="#d8ebff"
+                              stroke-width="4"/>
+
+                        <!-- Body -->
+                        <path d="M66 205
+                                 Q72 181 99 166
+                                 L172 145
+                                 L218 136
+                                 L454 136
+                                 L487 150
+                                 L534 164
+                                 Q555 171 563 193
+                                 L559 216
+                                 Q554 226 534 226
+                                 L91 226
+                                 Q67 223 66 205 Z"
+                              fill="url(#carPaint)"
+                              stroke="#b5d9ff"
+                              stroke-width="1.8"/>
+
+                        <!-- Body reflections -->
+                        <path d="M111 169 L215 143 L449 143"
+                              fill="none"
+                              stroke="#e0f1ff"
+                              stroke-width="2.5"
+                              opacity=".65"/>
+
+                        <path d="M104 190
+                                 Q211 207 319 201
+                                 L493 191"
+                              fill="none"
+                              stroke="#d8eaff"
+                              stroke-width="1.5"
+                              opacity=".35"/>
+
+                        <!-- Doors -->
+                        <path d="M332 140 L329 211"
+                              stroke="#173c65"
+                              stroke-width="2"/>
+
+                        <path d="M421 141 L443 204"
+                              stroke="#24588a"
+                              stroke-width="2"/>
+
+                        <path d="M350 158 L382 158"
+                              stroke="#d6e9ff"
+                              stroke-width="3"
+                              stroke-linecap="round"/>
+
+                        <!-- Headlights -->
+                        <path d="M508 174
+                                 L547 184
+                                 L552 194
+                                 L509 189 Z"
+                              fill="#e7f6ff"/>
+
+                        <path d="M512 179 L543 188"
+                              stroke="#a6d7ff"
+                              stroke-width="2"/>
+
+                        <!-- Rear light -->
+                        <path d="M72 187 L99 180 L95 197 L69 202 Z"
+                              fill="#ff797d"/>
+
+                        <!-- Front grille -->
+                        <path d="M532 202 L557 199 L553 214 L531 216 Z"
+                              fill="#0a1729"
+                              stroke="#9cc7f1"
+                              stroke-width="1.2"/>
+
+                        <!-- Wheels -->
+                        <g>
+                            <circle cx="177" cy="220" r="43"
+                                    fill="#08111f"
+                                    stroke="#9ac5ef"
+                                    stroke-width="3"/>
+
+                            <circle cx="177" cy="220" r="31"
+                                    fill="url(#wheelMetal)"
+                                    stroke="#d1e4f7"
+                                    stroke-width="2"/>
+
+                            <circle cx="177" cy="220" r="10"
+                                    fill="#20364f"
+                                    stroke="#c1ddfa"
+                                    stroke-width="2"/>
+
+                            <path d="M177 191 V210
+                                     M177 230 V249
+                                     M148 220 H167
+                                     M187 220 H206
+                                     M157 200 L170 213
+                                     M184 227 L197 240
+                                     M197 200 L184 213
+                                     M170 227 L157 240"
+                                  stroke="#d5e8fb"
+                                  stroke-width="4"
+                                  stroke-linecap="round"/>
+                        </g>
+
+                        <g>
+                            <circle cx="451" cy="220" r="43"
+                                    fill="#08111f"
+                                    stroke="#9ac5ef"
+                                    stroke-width="3"/>
+
+                            <circle cx="451" cy="220" r="31"
+                                    fill="url(#wheelMetal)"
+                                    stroke="#d1e4f7"
+                                    stroke-width="2"/>
+
+                            <circle cx="451" cy="220" r="10"
+                                    fill="#20364f"
+                                    stroke="#c1ddfa"
+                                    stroke-width="2"/>
+
+                            <path d="M451 191 V210
+                                     M451 230 V249
+                                     M422 220 H441
+                                     M461 220 H480
+                                     M431 200 L444 213
+                                     M458 227 L471 240
+                                     M471 200 L458 213
+                                     M444 227 L431 240"
+                                  stroke="#d5e8fb"
+                                  stroke-width="4"
+                                  stroke-linecap="round"/>
+                        </g>
+
+                        <!-- Ground reflection -->
+                        <path d="M96 263 H535"
+                              stroke="#438bd4"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              opacity=".5"/>
+
+                    </svg>
+
+                </div>
+
+                <div class="visual-bottom-label">
+                    <div class="visual-bottom-icon">✦</div>
+                    <div>
+                        <strong>Precision-driven insights</strong>
+                        <span>Built around your vehicle details</span>
+                    </div>
+                </div>
+
+                <div class="visual-index">01 <span>/</span> 03</div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========== FEATURE STRIP ========== -->
+
+        <section class="feature-strip">
+
+            <div class="feature-item">
+                <div class="feature-icon">⌁</div>
+                <div>
+                    <strong>Machine learning</strong>
+                    <span>Model-based estimation</span>
+                </div>
+            </div>
+
+            <div class="feature-separator"></div>
+
+            <div class="feature-item">
+                <div class="feature-icon">₹</div>
+                <div>
+                    <strong>INR valuation</strong>
+                    <span>Results in Indian rupees</span>
+                </div>
+            </div>
+
+            <div class="feature-separator"></div>
+
+            <div class="feature-item">
+                <div class="feature-icon">◷</div>
+                <div>
+                    <strong>Quick estimation</strong>
+                    <span>Submit details to get a result</span>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ========== PREDICTION WORKSPACE ========== -->
+
+        <section class="estimator-section" id="estimator">
+
+            <div class="section-header">
+
+                <div>
+                    <div class="section-eyebrow">
+                        YOUR VALUATION WORKSPACE
+                    </div>
+
+                    <h2>Let's value your vehicle.</h2>
+
+                    <p>
+                        Enter accurate vehicle details to generate an
+                        estimated resale price.
+                    </p>
+                </div>
+
+                <div class="step-indicator">
+                    <span class="step-number">01</span>
+                    <div>
+                        <strong>Vehicle details</strong>
+                        <small>Complete all 5 fields</small>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="workspace-grid">
+
+                <!-- FORM CARD -->
+
+                <section class="form-card">
+
+                    <div class="card-heading">
+
+                        <div class="heading-icon">▤</div>
+
+                        <div>
+                            <h3>Vehicle information</h3>
+                            <p>Tell us about the car you want to value.</p>
+                        </div>
+
+                        <span class="required-tag">
+                            <b>*</b> Required
+                        </span>
+
+                    </div>
+
+
+                    <form action="/predict" method="POST" id="prediction-form">
+
+                        <div class="form-grid">
+
+                            <!-- COMPANY -->
+
+                            <div class="form-field">
+                                <label for="company">
+                                    Manufacturer <b>*</b>
+                                </label>
+
+                                <div class="input-wrap">
+                                    <span class="input-icon">◈</span>
+
+                                    <select name="company"
+                                            id="company"
+                                            required>
+                                        {% for company in companies %}
+                                            <option value="{{ company }}"
+                                                {% if selected_company is defined and selected_company == company %}selected{% endif %}>
+                                                {{ company }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+
+                                    <span class="select-arrow">⌄</span>
+                                </div>
+
+                                <small>Choose the car manufacturer.</small>
+                            </div>
+
+
+                            <!-- MODEL -->
+
+                            <div class="form-field">
+                                <label for="car_models">
+                                    Car model <b>*</b>
+                                </label>
+
+                                <div class="input-wrap">
+                                    <span class="input-icon">▱</span>
+
+                                    <select name="car_models"
+                                            id="car_models"
+                                            required>
+                                        {% for model_name in car_models %}
+                                            <option value="{{ model_name }}"
+                                                {% if selected_model is defined and selected_model == model_name %}selected{% endif %}>
+                                                {{ model_name }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+
+                                    <span class="select-arrow">⌄</span>
+                                </div>
+
+                                <small>Select the exact model name.</small>
+                            </div>
+
+
+                            <!-- YEAR -->
+
+                            <div class="form-field">
+                                <label for="year">
+                                    Manufacturing / purchase year <b>*</b>
+                                </label>
+
+                                <div class="input-wrap">
+                                    <span class="input-icon">▦</span>
+
+                                    <select name="year"
+                                            id="year"
+                                            required>
+                                        {% for year in years %}
+                                            <option value="{{ year }}"
+                                                {% if selected_year is defined and selected_year|string == year|string %}selected{% endif %}>
+                                                {{ year }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+
+                                    <span class="select-arrow">⌄</span>
+                                </div>
+
+                                <small>Choose the year expected by your model.</small>
+                            </div>
+
+
+                            <!-- FUEL -->
+
+                            <div class="form-field">
+                                <label for="fuel_type">
+                                    Fuel type <b>*</b>
+                                </label>
+
+                                <div class="input-wrap">
+                                    <span class="input-icon">ϟ</span>
+
+                                    <select name="fuel_type"
+                                            id="fuel_type"
+                                            required>
+                                        {% for fuel in fuel_types %}
+                                            <option value="{{ fuel }}"
+                                                {% if selected_fuel is defined and selected_fuel == fuel %}selected{% endif %}>
+                                                {{ fuel }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+
+                                    <span class="select-arrow">⌄</span>
+                                </div>
+
+                                <small>Petrol, diesel, LPG or other available types.</small>
+                            </div>
+
+
+                            <!-- KILOMETRES -->
+
+                            <div class="form-field field-full">
+                                <label for="kilo_driven">
+                                    Distance travelled <b>*</b>
+                                </label>
+
+                                <div class="input-wrap">
+                                    <span class="input-icon">⌁</span>
+
+                                    <input type="number"
+                                           name="kilo_driven"
+                                           id="kilo_driven"
+                                           min="0"
+                                           max="2000000"
+                                           step="1"
+                                           placeholder="e.g. 45000"
+                                           value="{{ selected_kilometres if selected_kilometres is defined else '' }}"
+                                           required>
+
+                                    <span class="input-unit">KM</span>
+                                </div>
+
+                                <small>
+                                    Enter the total kilometres shown on the odometer.
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-footer">
+
+                            <div class="privacy-note">
+                                <span class="privacy-icon">✓</span>
+
+                                <span>
+                                    Review your inputs before generating
+                                    the estimated price.
+                                </span>
+                            </div>
+
+                            <button type="submit" class="predict-button">
+                                <span class="button-sparkle">✦</span>
+                                Predict car price
+                                <span class="button-arrow">↗</span>
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+
+                    
+{% if prediction_text is defined and prediction_text is not none %}
+    <div class="prediction-result">
+        <h3>Estimated Car Price</h3>
+        <p>₹ {{ "{:,.2f}".format(prediction_text) }}</p>
+    </div>
+{% endif %}
+
+
+                </section>
+
+
+                <!-- RESULT CARD -->
+
+                <aside class="result-column">
+
+                    <section class="result-card">
+
+                        <div class="result-card-top">
+                            <div class="result-heading">
+                                <span class="result-heading-icon">✧</span>
+                                <span>VALUATION RESULT</span>
+                            </div>
+
+                            <span class="result-state">
+                                <i></i>
+                                {% if prediction_text is defined and prediction_text %}
+                                    GENERATED
+                                {% else %}
+                                    AWAITING INPUT
+                                {% endif %}
+                            </span>
+                        </div>
+
+
+                        
+{% if prediction_text is not none and prediction_text is defined %}
+    <div class="prediction-success">
+        <span class="prediction-label">ESTIMATED RESALE VALUE</span>
+
+        <h2 class="prediction-price">
+            ₹{{ "{:,.2f}".format(prediction_text) }}
+        </h2>
+
+        <p class="prediction-description">
+            Your vehicle's estimated market value
+        </p>
+    </div>
+{% else %}
+    <div class="prediction-empty">
+        <h2>Your estimate starts here.</h2>
+        <p>
+            Fill in the vehicle details and run a prediction
+            to see the estimated value.
+        </p>
+    </div>
+{% endif %}
+
+
+                    </section>
+
+
+                    <section class="insight-card">
+
+                        <div class="insight-icon">✦</div>
+
+                        <div>
+                            <h4>A smarter starting point.</h4>
+
+                            <p>
+                                Use your estimate as a reference when
+                                researching your car's resale value.
+                            </p>
+                        </div>
+
+                    </section>
+
+
+                    <div class="model-note">
+                        <span class="model-note-icon">ⓘ</span>
+
+                        <p>
+                            The displayed price depends on the model's
+                            training data and prediction accuracy.
+                        </p>
+                    </div>
+
+                    `
+<div class="sidebar-logout">
+    <a href="{{ url_for('logout') }}" class="logout-btn">
+        <span>↪</span>
+        <span>Logout</span>
+    </a>
+</div>
+
+
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========== HOW IT WORKS ========== -->
+
+        <section class="how-section" id="how-it-works">
+
+            <div class="how-header">
+                <div>
+                    <div class="section-eyebrow">SIMPLE PROCESS</div>
+                    <h2>How AutoValue works.</h2>
+                </div>
+
+                <span class="how-badge">3 EASY STEPS</span>
+            </div>
+
+
+            <div class="how-grid">
+
+                <article class="how-card">
+
+                    <div class="how-card-top">
+                        <div class="how-icon">▤</div>
+                        <span>01</span>
+                    </div>
+
+                    <h3>Enter vehicle details</h3>
+
+                    <p>
+                        Choose your manufacturer, model, year, fuel type
+                        and kilometres travelled.
+                    </p>
+
+                    <div class="how-line"></div>
+
+                </article>
+
+
+                <article class="how-card">
+
+                    <div class="how-card-top">
+                        <div class="how-icon">⌁</div>
+                        <span>02</span>
+                    </div>
+
+                    <h3>Run the ML model</h3>
+
+                    <p>
+                        Your inputs are passed to the prediction pipeline
+                        used by your application.
+                    </p>
+
+                    <div class="how-line"></div>
+
+                </article>
+
+
+                <article class="how-card">
+
+                    <div class="how-card-top">
+                        <div class="how-icon">₹</div>
+                        <span>03</span>
+                    </div>
+
+                    <h3>View your estimate</h3>
+
+                    <p>
+                        Review the predicted price and use it as a
+                        starting point for further research.
+                    </p>
+
+                    <div class="how-line"></div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========== FOOTER ========== -->
+
+        <footer class="footer">
+
+            <a href="#home" class="footer-brand">
+                <span>A</span> AutoValue
+            </a>
+
+            <p>
+                A machine-learning car valuation project.
+                Estimates are informational and not guaranteed offers.
+            </p>
+
+            <a href="#home" class="back-top">
+                Back to top ↑
+            </a>
+
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>
