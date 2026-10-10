@@ -7,3 +7,4 @@ gunicorn
 python-dotenv
 Werkzeug
 Pillow
+Flask-Mail
